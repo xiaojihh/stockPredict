@@ -1,0 +1,8 @@
+/__pycache__
+/data
+/generate_test.jpg
+/generate_train.jpg
+/inference.py
+/real_data.jpg
+/results
+/weights

@@ -13,8 +13,8 @@ from datasets import TrainSet
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--exp_name', type=str, default='标普500')
-parser.add_argument('--file_name', type=str, default='./data/十年标普500.csv')
+parser.add_argument('--exp_name', type=str, default='深证指数')
+parser.add_argument('--file_name', type=str, default='./data/十年399001.SZ.csv')
 parser.add_argument('--device', type=str, default='1')
 parser.add_argument('--lr', type=float, default=0.0001)
 parser.add_argument('--epochs', type=int, default=1000)
@@ -142,8 +142,8 @@ def normalize_data(train_data, val_data, test_data):
 def main():
     # 读取数据
     df = pd.read_csv(args.file_name, index_col=0)
-    df.index = list(map(lambda x:datetime.datetime.strptime(x, '%m/%d/%Y'), df.index))
-    df = df[::-1]
+    df.index = list(map(lambda x:datetime.datetime.strptime(x, '%Y-%m-%d'), df.index))
+    # df = df[::-1]
     # 生成数据集
     train_data, val_data, test_data, all_series, df_index = getData(df, 'High')
     train_end = -len(test_data)
